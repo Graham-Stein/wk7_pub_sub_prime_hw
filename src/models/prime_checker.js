@@ -24,8 +24,15 @@ PrimeChecker.prototype.bindEvents = function () {
     console.log("in primechecker this is:", this);
     console.log("in primechecker event is:", event);
     const inputNumber = event.detail;
-    const result = this.checkIfPrime(inputNumber);
+    let result = this.checkIfPrime(inputNumber);
+    if (result) {
+      result = "This is indeed a prime number!";
+    } else {
+      result = "This one isn't prime at all...";
+    };
+    console.log("result is:", result);
     PubSub.publish('PrimeChecker:result', result);
+    console.log('payload received in PrimeChecker:', inputNumber);
   });
 };
 
